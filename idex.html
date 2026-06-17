@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>My E-Portfolio | Cyber Security Student</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #1e2a3e;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links li {
+            cursor: pointer;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #ffd966;
+            border-bottom: 2px solid #ffd966;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            min-height: 70vh;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            color: #1e3c72;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            border-left: 5px solid #2a5298;
+            padding-left: 1rem;
+        }
+
+        h2 {
+            color: #2a5298;
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        h3 {
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-home {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .profile-home-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #2a5298;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+
+        .profile-home-img:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-home-info {
+            flex: 1;
+        }
+
+        .profile-home-info h2 {
+            margin-top: 0;
+        }
+
+        .tagline {
+            color: #2a5298;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-profile {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .about-profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #2a5298;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+
+        .about-profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #2a5298;
+            transition: transform 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateX(5px);
+        }
+
+        .achievement-list {
+            list-style: none;
+        }
+
+        .achievement-list li {
+            background: #eef2ff;
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .achievement-list li strong {
+            color: #1e3c72;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: border 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2a5298;
+        }
+
+        .btn {
+            background: #2a5298;
+            color: white;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: fit-content;
+        }
+
+        .btn:hover {
+            background: #1e3c72;
+        }
+
+        footer {
+            background: #1e2a3e;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .active-page {
+            display: block;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+                padding: 1rem 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .profile-home {
+                flex-direction: column;
+                text-align: center;
+            }
+            .profile-home-img {
+                width: 120px;
+                height: 120px;
+            }
+            .about-profile-img {
+                width: 160px;
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">My Portfolio</div>
+        <div class="menu-toggle" id="mobile-menu">☰</div>
+        <ul class="nav-links" id="nav-links">
+            <li><a onclick="showPage('home')">Home</a></li>
+            <li><a onclick="showPage('about')">About</a></li>
+            <li><a onclick="showPage('projects')">Projects</a></li>
+            <li><a onclick="showPage('achievements')">Achievements</a></li>
+            <li><a onclick="showPage('contact')">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main class="container">
+    <!-- HOME PAGE -->
+    <div id="home-page" class="page active-page">
+        <div class="card">
+            <div class="profile-home">
+                <!-- CHANGE "home-photo.jpg" TO YOUR IMAGE FILENAME -->
+                <img src="mainpic.jpg" alt="Profile Picture" class="profile-home-img" onerror="this.src='https://via.placeholder.com/150/1e3c72/white?text=Photo'">
+                <div class="profile-home-info">
+                    <div class="tagline">Cyber Security Student | Web Developer</div>
+                    <h2>Alyan Imran</h2>
+                    <p>Welcome to my professional e-portfolio. I specialize in network security, ethical hacking, and front-end web development.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h1>Welcome to My E-Portfolio</h1>
+            <p>I am a passionate <strong>Cyber Security student</strong> at <strong>UK College of Business and Computing - Dubai</strong>. This portfolio showcases my skills, projects, and achievements in the digital world.</p>
+            <p style="margin-top: 1rem;">I am dedicated to protecting digital assets and creating secure, user-friendly web experiences.</p>
+        </div>
+
+        <div class="card">
+            <h2>What You Will Find Here</h2>
+            <ul>
+                <li><strong>About Me</strong> - My background, skills, and photo</li>
+                <li><strong>Projects</strong> - Real work in cyber security and web development</li>
+                <li><strong>Achievements</strong> - Certifications, awards, and hackathons</li>
+                <li><strong>Contact</strong> - Get in touch with me</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Current Focus</h2>
+            <p>Studying for <strong>Certified Ethical Hacker (CEH)</strong> certification. Building responsive websites and practicing penetration testing on TryHackMe.</p>
+        </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about-page" class="page">
+        <div class="card">
+            <h1>About Me</h1>
+            
+            <div class="about-profile">
+                <!-- CHANGE "about-photo.jpg" TO YOUR IMAGE FILENAME -->
+                <img src="mainpic.jpg" alt="About Me Photo" class="about-profile-img" onerror="this.src='https://via.placeholder.com/220/1e3c72/white?text=Photo'">
+            </div>
+            
+            <p>I am a dedicated Cyber Security student with a strong passion for protecting digital assets and creating secure, user-friendly web experiences. I believe that good design and strong security go hand in hand.</p>
+            
+            <h2>Education</h2>
+            <p><strong>HND in Cyber Security</strong> - UK College of Business and Computing, Dubai (2024 - Present)</p>
+            
+            <h2>Technical Skills</h2>
+            <ul>
+                <li>HTML5, CSS3, JavaScript (Front-End Development)</li>
+                <li>Cyber Security Fundamentals and Network Security</li>
+                <li>Responsive Web Design and Accessibility</li>
+                <li>Ethical Hacking Tools (Nmap, Wireshark, Metasploit basics)</li>
+                <li>Linux and Windows Security</li>
+            </ul>
+            
+            <h2>Career Goal</h2>
+            <p>To become a Security Analyst or Penetration Tester, helping organizations secure their web applications and network infrastructure.</p>
+        </div>
+    </div>
+
+    <!-- PROJECTS PAGE -->
+    <div id="projects-page" class="page">
+        <div class="card">
+            <h1>My Projects</h1>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Network Security Audit</h3>
+                    <p>Conducted a full security audit on a simulated corporate network, identifying open ports, weak firewall rules, and recommending patches.</p>
+                    <p><strong>Tools:</strong> Nmap, Wireshark, Zenmap</p>
+                </div>
+                <div class="project-card">
+                    <h3>E-Portfolio Website</h3>
+                    <p>Designed and developed this responsive multi-page website using HTML, CSS, and JavaScript. Fully accessible and mobile-friendly.</p>
+                    <p><strong>Technologies:</strong> HTML5, CSS3, JavaScript</p>
+                </div>
+                <div class="project-card">
+                    <h3>Phishing Awareness Tool</h3>
+                    <p>Created an interactive web-based quiz that educates users about identifying phishing emails and suspicious links.</p>
+                    <p><strong>Technologies:</strong> JavaScript, HTML, CSS</p>
+                </div>
+                <div class="project-card">
+                    <h3>VPN Implementation Lab</h3>
+                    <p>Set up and configured a VPN server on a Linux machine, testing encrypted tunneling and secure remote access.</p>
+                    <p><strong>Technologies:</strong> OpenVPN, Ubuntu, iptables</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ACHIEVEMENTS PAGE -->
+    <div id="achievements-page" class="page">
+        <div class="card">
+            <h1>Achievements and Certifications</h1>
+            <ul class="achievement-list">
+                <li><strong>Certified Ethical Hacker (CEH)</strong> - In Progress (Exam scheduled 2026)</li>
+                <li><strong>Google IT Support Professional Certificate</strong> - 2025</li>
+                <li><strong>Winner - University Cyber Security Hackathon 2025</strong> (Team Captain)</li>
+                <li><strong>Completed 100+ hours on TryHackMe</strong> (Top 5 percent globally)</li>
+                <li><strong>Published Article</strong> - "Top 10 Web Security Best Practices for Startups" on Medium</li>
+                <li><strong>Cisco Introduction to Cyber Security</strong> - Completed with Distinction</li>
+                <li><strong>Outstanding Student Award</strong> - UK College of Business and Computing (2025)</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2>Certificates Gallery</h2>
+            <p>I hold multiple certifications in cyber security, networking, and web development. Available upon request.</p>
+        </div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact-page" class="page">
+        <div class="card">
+            <h1>Contact Me</h1>
+            <p>Have a question, collaboration idea, or job opportunity? Fill out the form below and I will get back to you within 48 hours.</p>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Your Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Your Email Address" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+            <div id="form-message" style="margin-top: 1rem; color: green;"></div>
+        </div>
+        <div class="card">
+            <h2>Connect With Me</h2>
+            <p>Email: your.email@example.com</p>
+            <p>LinkedIn: linkedin.com/in/your-profile</p>
+            <p>GitHub: github.com/yourusername</p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 My Cyber Security E-Portfolio | Designed for Unit 13 Website Design and Development</p>
+</footer>
+
+<script>
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+    }
+
+    function showPage(pageId) {
+        const pages = document.querySelectorAll('.page');
+        pages.forEach(page => {
+            page.classList.remove('active-page');
+        });
+        
+        const selectedPage = document.getElementById(pageId + '-page');
+        if (selectedPage) {
+            selectedPage.classList.add('active-page');
+        }
+        
+        if (window.innerWidth <= 768) {
+            navLinks.classList.remove('active');
+        }
+        
+        window.scrollTo(0, 0);
+    }
+
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const formMessage = document.getElementById('form-message');
+            
+            if (!name || !email || !message) {
+                formMessage.style.color = 'red';
+                formMessage.textContent = 'Please fill in all fields.';
+                setTimeout(function() { formMessage.textContent = ''; }, 3000);
+                return;
+            }
+            if (!email.includes('@') || !email.includes('.')) {
+                formMessage.style.color = 'red';
+                formMessage.textContent = 'Please enter a valid email address.';
+                setTimeout(function() { formMessage.textContent = ''; }, 3000);
+                return;
+            }
+            
+            formMessage.style.color = 'green';
+            formMessage.textContent = 'Thank you for your message. I will get back to you soon.';
+            contactForm.reset();
+            
+            setTimeout(function() { formMessage.textContent = ''; }, 4000);
+        });
+    }
+    
+    window.showPage = showPage;
+</script>
+
+</body>
+</html>
